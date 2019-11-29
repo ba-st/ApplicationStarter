@@ -143,7 +143,9 @@ ApplicationStarterCommandLineHandler >> exceptionsToHandle [
 ApplicationStarterCommandLineHandler >> exitFailure: aMessage [
 
 	self isDebugModeEnabled
-		ifTrue: [ CurrentLogger value logAsError: aMessage ]
+		ifTrue: [ CurrentLogger value logAsError: aMessage.
+			AssertionFailed signal: aMessage
+			]
 		ifFalse: [ super exitFailure: aMessage ]
 ]
 
